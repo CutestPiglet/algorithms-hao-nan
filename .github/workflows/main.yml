@@ -21,4 +21,9 @@ jobs:
         python -m pip install -r requirements_test.txt
 
     - name: Run test cases
-      run: python -m pytest
+      run: python -m pytest --cov=problems --cov-report=xml
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v2
+      with:
+        fail_ci_if_error: true
