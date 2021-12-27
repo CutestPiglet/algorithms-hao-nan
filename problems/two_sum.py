@@ -9,9 +9,11 @@ from typing import List
 
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
+
         diff = {
             # num: index
         }
+
         for index, num in enumerate(nums):
             if num in diff:
                 return [diff[num], index]
