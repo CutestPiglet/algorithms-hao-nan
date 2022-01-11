@@ -12,6 +12,7 @@ class TestCase(unittest.TestCase):
             {'nums': [4, 5, 6, 7, 0, 1, 2], 'target': 0},
             {'nums': [4, 5, 6, 7, 0, 1, 2], 'target': 3},
             {'nums': [6, 7, 0, 1, 2, 4, 5], 'target': 2},
+            {'nums': [12, 5, 7, 9, 11], 'target': 12},
             {'nums': [1], 'target': 0},
             {'nums': [3, 1], 'target': 1},
         ]
@@ -19,6 +20,7 @@ class TestCase(unittest.TestCase):
             4,
             -1,
             4,
+            0,
             -1,
             1,
         ]
