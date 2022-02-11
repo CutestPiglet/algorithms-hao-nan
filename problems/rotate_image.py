@@ -13,16 +13,16 @@ class Solution:
         Do not return anything, modify matrix in-place instead.
         """
 
-        n = len(matrix)
+        m = len(matrix)
 
         # reverse
-        i, j = 0, n - 1
+        i, j = 0, m - 1
         while i < j:
             matrix[i], matrix[j] = matrix[j], matrix[i]
             i += 1
             j -= 1
 
         # transpose
-        for i in range(n):
-            for j in range(i, n):
+        for i in range(m):
+            for j in range(i, m):
                 matrix[j][i], matrix[i][j] = matrix[i][j], matrix[j][i]
