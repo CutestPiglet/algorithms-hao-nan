@@ -14,10 +14,14 @@ class TestCase(unittest.TestCase):
         input_data = [
             '[3,9,20,null,null,15,7]',
             '[1,null,2]',
+            '[]',
+            '[17]',
         ]
         expected_output = [
             3,
             2,
+            0,
+            1,
         ]
         for data, output in zip(input_data, expected_output):
             self.assertEqual(self.solution.maxDepth(deserialize_tree_str(data)), output)
