@@ -1,5 +1,8 @@
 # coding: utf-8
 
+from collections import deque
+
+
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
@@ -45,3 +48,56 @@ def convert_listnode_to_list(head):
         head = head.next
 
     return values
+
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+
+def deserialize_tree_str(s):
+    """
+    Deserialize string format of TreeNodes to binary TreeNodes
+
+    Args:
+        s (str): string format of TreeNodes
+
+    Returns:
+        TreeNode: root TreeNode
+    """
+
+    if s == '[]':
+        return None
+
+    values = s.strip('[]').split(',')
+    for i in range(len(values)):
+        if values[i] == 'null':
+            values[i] = None
+        else:
+            values[i] = int(values[i])
+
+    value_queue = deque(values)
+
+    root = TreeNode(value_queue.popleft())
+    node_queue = deque([root])
+
+    while node_queue and value_queue:
+        node = node_queue.popleft()
+
+        left_value = value_queue.popleft()
+        if left_value is not None:
+            node.left = TreeNode(left_value)
+            node_queue.append(node.left)
+
+        try:
+            right_value = value_queue.popleft()
+        except IndexError:
+            continue
+        else:
+            if right_value is not None:
+                node.right = TreeNode(right_value)
+                node_queue.append(node.right)
+
+    return root
