@@ -91,7 +91,11 @@ def deserialize_tree_str(s):
             node.left = TreeNode(left_value)
             node_queue.append(node.left)
 
-        right_value = value_queue.popleft()
+        try:
+            right_value = value_queue.popleft()
+        except IndexError:
+            continue
+
         if right_value is not None:
             node.right = TreeNode(right_value)
             node_queue.append(node.right)
