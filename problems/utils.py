@@ -9,12 +9,13 @@ class ListNode:
         self.next = next
 
 
-def convert_list_to_listnode(values):
+def convert_list_to_listnode(values, pos=-1):
     """
     Convert list to ListNode
 
     Args:
         values (list): list of ListNode values
+        pos (int): denote the index of the node that tail's next pointer is connected to
 
     Returns:
         ListNode: head pointer of ListNodes
@@ -23,9 +24,16 @@ def convert_list_to_listnode(values):
     dummy_head_node = ListNode()
     current_node = dummy_head_node
 
-    for value in values:
+    cycle_node = None
+    for index, value in enumerate(values):
         current_node.next = ListNode(value)
         current_node = current_node.next
+
+        if index == pos:
+            cycle_node = current_node
+
+    if cycle_node:
+        current_node.next = cycle_node
 
     return dummy_head_node.next
 
