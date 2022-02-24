@@ -81,7 +81,7 @@ def deserialize_tree_str(s):
 
     values = s.strip('[]').split(',')
     for i in range(len(values)):
-        if values[i] == 'null':
+        if values[i].strip() == 'null':
             values[i] = None
         else:
             values[i] = int(values[i])
@@ -109,3 +109,35 @@ def deserialize_tree_str(s):
             node_queue.append(node.right)
 
     return root
+
+
+def serialize_treenode(root):
+    """
+    Deserialize string format of TreeNodes to binary TreeNodes
+
+    Args:
+        TreeNode (root): root TreeNode
+
+    Returns:
+        str: string format of TreeNodes
+    """
+
+    if not root:
+        return '[]'
+
+    values = []
+    node_queue = deque([root])
+
+    while node_queue:
+        node = node_queue.popleft()
+        if node:
+            values.append(node.val)
+            node_queue.append(node.left)
+            node_queue.append(node.right)
+        else:
+            values.append('null')
+
+    while values and (values[-1] == 'null'):
+        values.pop()
+
+    return f"[{', '.join(str(i) for i in values)}]"
