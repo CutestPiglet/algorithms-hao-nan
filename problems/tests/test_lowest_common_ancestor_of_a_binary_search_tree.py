@@ -14,11 +14,13 @@ class TestCase(unittest.TestCase):
         input_data = [
             {'root': '[6,2,8,0,4,7,9,null,null,3,5]', 'p': '[2]', 'q': '[8]'},
             {'root': '[6,2,8,0,4,7,9,null,null,3,5]', 'p': '[2]', 'q': '[4]'},
+            {'root': '[6,2,8,0,4,7,9,null,null,3,5]', 'p': '[8]', 'q': '[9]'},
             {'root': '[2,1]', 'p': '[2]', 'q': '[1]'},
         ]
         expected_output = [
             '[6]',
             '[2]',
+            '[8]',
             '[2]',
         ]
         for data, output in zip(input_data, expected_output):
